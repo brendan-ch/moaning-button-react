@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/moaning-button-react/static/css/main.ffee66c3.chunk.css",
-    "main.js": "/moaning-button-react/static/js/main.47323f76.chunk.js",
-    "main.js.map": "/moaning-button-react/static/js/main.47323f76.chunk.js.map",
-    "runtime-main.js": "/moaning-button-react/static/js/runtime-main.49b443e8.js",
-    "runtime-main.js.map": "/moaning-button-react/static/js/runtime-main.49b443e8.js.map",
-    "static/js/2.0dfb9d84.chunk.js": "/moaning-button-react/static/js/2.0dfb9d84.chunk.js",
-    "static/js/2.0dfb9d84.chunk.js.map": "/moaning-button-react/static/js/2.0dfb9d84.chunk.js.map",
-    "index.html": "/moaning-button-react/index.html",
-    "precache-manifest.a07efe38ca8850cd40fa6e873ef25f22.js": "/moaning-button-react/precache-manifest.a07efe38ca8850cd40fa6e873ef25f22.js",
-    "service-worker.js": "/moaning-button-react/service-worker.js",
-    "static/css/main.ffee66c3.chunk.css.map": "/moaning-button-react/static/css/main.ffee66c3.chunk.css.map",
-    "static/js/2.0dfb9d84.chunk.js.LICENSE.txt": "/moaning-button-react/static/js/2.0dfb9d84.chunk.js.LICENSE.txt",
-    "static/media/moaning-sound.mp3": "/moaning-button-react/static/media/moaning-sound.4c999de4.mp3"
+    "main.css": "/static/css/main.ffee66c3.chunk.css",
+    "main.js": "/static/js/main.bf4f66d6.chunk.js",
+    "main.js.map": "/static/js/main.bf4f66d6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/js/2.555c56a1.chunk.js": "/static/js/2.555c56a1.chunk.js",
+    "static/js/2.555c56a1.chunk.js.map": "/static/js/2.555c56a1.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.03585c74c92cc8af81519b326f000907.js": "/precache-manifest.03585c74c92cc8af81519b326f000907.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.ffee66c3.chunk.css.map": "/static/css/main.ffee66c3.chunk.css.map",
+    "static/js/2.555c56a1.chunk.js.LICENSE.txt": "/static/js/2.555c56a1.chunk.js.LICENSE.txt",
+    "static/media/moaning-sound.mp3": "/static/media/moaning-sound.4c999de4.mp3"
   },
   "entrypoints": [
-    "static/js/runtime-main.49b443e8.js",
-    "static/js/2.0dfb9d84.chunk.js",
+    "static/js/runtime-main.09b85ec0.js",
+    "static/js/2.555c56a1.chunk.js",
     "static/css/main.ffee66c3.chunk.css",
-    "static/js/main.47323f76.chunk.js"
+    "static/js/main.bf4f66d6.chunk.js"
   ]
 }
