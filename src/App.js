@@ -52,12 +52,6 @@ function Bottom({ appearance, connected, connecting, count, onConnectDisconnect,
 }
 
 class App extends React.Component {
-  // const [appearance, setAppearance] = useState(localStorage.getItem('appearance') || 'light');
-  // const [connected, setConnected] = useState(false);
-  // const [connecting, setConnecting] = useState(true);
-  // const [count, setCount] = useState(0);
-  // const [playing, setPlaying] = useState([]);
-
   constructor(props) {
     super();
     this.state = {
@@ -65,8 +59,10 @@ class App extends React.Component {
       connected: false,
       connecting: true,
       count: 0,
-      playing: []
+      // playing: []
     }
+
+    this.playing = []
   }
 
   componentDidMount() {
@@ -97,13 +93,19 @@ class App extends React.Component {
   }
 
   _onMoan = (value) => {
-    this.setState({ playing: this.state.playing.concat([0]) });
+    // this.setState({ playing: this.state.playing.concat([0]) });
+    this.playing.push({
+      id: (Math.round(value * 100000000)).toString(),
+      status: "PLAYING",
+      position: 0,
+    });
     console.log("uuuuuuuuuuuaUAAAAAAAAAAAAAAAHHHHh");
     console.log(value);
 
     if (value > 0.999) {
       window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
     }
+    this.forceUpdate();  // forces render of moans
   };
 
   _onUpdateCount = (value) => {
@@ -152,13 +154,25 @@ class App extends React.Component {
           onAppearanceChange={this._onAppearanceChange}
           onConnectDisconnect={this._onConnectDisconnect} 
         />
-        {this.state.playing.map(() => <Sound 
+        {this.playing.map((item) => <Sound 
           url={moanfile}
-          playStatus="PLAYING"
+          playStatus={item.status}
+          position={item.position}
+          onPlaying={(object) => {
+            const index = this.playing.findIndex((element) => element.id === item.id);
+            this.playing[index] = {...this.playing[index], position: object.position};
+
+            // this.forceUpdate();
+          }}
           onFinishedPlaying={() => {
-            this.state.playing.pop();  // NEVER DO THIS
-            console.log("Finished playing");
-            console.log(this.state.playing);
+            const index = this.playing.findIndex((element) => element.id === item.id);
+            this.playing.splice(index, 1);
+            console.log("Modified playing state");
+            console.log(this.playing);
+
+            if (this.playing.length === 0) {
+              this.forceUpdate();
+            }
           }} 
         /> )}
       </div>
