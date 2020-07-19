@@ -41,6 +41,8 @@
 }
 
 .Button {
+  outline: none;
+  border: none;
   background-color: #981ceb;
   display: flex;
   height: 70px;
@@ -53,6 +55,10 @@
 .Button:hover {
   cursor: pointer;
   background-color: rgba(152, 28, 235, 0.5);
+}
+
+.Mobile-status {
+  width: 250px;
 }
 
 .Status {

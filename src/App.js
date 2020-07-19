@@ -9,9 +9,10 @@ import { SocketIO, SocketIOFunctions } from './Socket';
 function Bottom({ appearance, connected, connecting, count, onConnectDisconnect, onAppearanceChange }) {
   return (
     <header
-        className="App-bottom"
-        style={{ backgroundColor: appearance === "dark" ? "black" : "white" }}
-      >
+      className="App-bottom"
+      style={{ backgroundColor: appearance === "dark" ? "black" : "white" }}
+    >
+      {window.innerWidth >= 534 ?
         <div className="Status">
           <p
             style={{ color: appearance === "dark" ? "white" : "black" , marginRight: 8}}
@@ -36,18 +37,22 @@ function Bottom({ appearance, connected, connecting, count, onConnectDisconnect,
             {connected ? "Leave" : "Join"}
           </p>
         </div>
-        <p 
-          className="Small-button"
-          onClick={onAppearanceChange}
-        >
-          {
-            appearance === "dark" ?
-              "Light mode"
-            :
-              "Dark mode"
-          }
-        </p>
-      </header>
+      :
+        null
+      }
+      
+      <p 
+        className="Small-button"
+        onClick={onAppearanceChange}
+      >
+        {
+          appearance === "dark" ?
+            "Light mode"
+          :
+            "Dark mode"
+        }
+      </p>
+    </header>
   )
 }
 
@@ -55,11 +60,10 @@ class App extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      appearance: localStorage.getItem('appearance') || 'light',
+      appearance: localStorage.getItem('appearance') || 'light',  // stores appearance in browser's local storage
       connected: false,
       connecting: true,
-      count: 0,
-      // playing: []
+      count: 0,  // number of people connected to server
     }
 
     this.playing = []
@@ -72,13 +76,10 @@ class App extends React.Component {
 
   _onConnect = () => {
     this.setState({ connected: true, connecting: false });
-    // setConnected(true);
-    // setConnecting(false);
     console.log("Connected to moaning room.")
   };
 
   _onDisconnect = () => {
-    // setConnected(false);
     this.setState({ connected: false });
     console.log("Disconnected from moaning room.");
   };
@@ -119,10 +120,6 @@ class App extends React.Component {
     console.log("Changed appearance.");
   }
 
-  // useEffect(() => {
-  //   SocketIO(_onConnect, _onDisconnect, _onMoan, _onUpdateCount);
-  //   SocketIOFunctions.connect();
-  // }, [])
   render() {
     return (
       <div className="App">
@@ -133,8 +130,6 @@ class App extends React.Component {
           <div 
             className="Button"
             onClick={() => {
-              // this.state.(playing.concat([0]));
-              // console.log("");
               const number = Math.random();
               if (this.state.connected) {
                 SocketIOFunctions.moan(number);
@@ -145,6 +140,27 @@ class App extends React.Component {
           >
             <p className="Button-text">do the moan</p>
           </div>
+          {window.innerWidth < 534 ? 
+            <div className="Mobile-status">
+              <p>
+                {
+                  this.state.connected ?
+                    this.state.count === 2 ?
+                      "You are in the moaning room with 1 other person."
+                    :
+                      "You are in the moaning room with " + (this.state.count - 1) + " other people."
+                  :
+                    this.state.connecting ?
+                      "Joining the moaning room... "
+                    :
+                      "You are not in the moaning room."
+                }
+              </p>
+              <p className="Small-button">{this.state.connected ? "Leave" : "Join"}</p>
+            </div>
+          :
+            null
+          }
         </header>
         <Bottom 
           appearance={this.state.appearance} 
