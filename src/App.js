@@ -34,7 +34,7 @@ function Bottom({ appearance, connected, connecting, count, onConnectDisconnect,
             className="Small-button"
             onClick={onConnectDisconnect}
           >
-            {connected ? "Leave" : "Join"}
+            {connected || connecting ? "Leave" : "Join"}
           </p>
         </div>
       :
@@ -85,7 +85,7 @@ class App extends React.Component {
   };
 
   _onConnectDisconnect = () => {  // when leave/join button is pressed
-    if (this.state.connected) {
+    if (this.state.connected || this.state.connecting) {
       SocketIOFunctions.disconnect();
     } else {
       this.setState({ connecting: true });
